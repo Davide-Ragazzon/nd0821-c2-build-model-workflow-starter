@@ -4,12 +4,12 @@ channels:
 #  - defaults
 dependencies:
   - python=3.10
-  - jupyter
-  - mlflow
-  - hydra-core
-  - pandas
-  - cookiecutter
-  - wandb
+  - jupyter=1.0.0
+  - mlflow=1.25.1
+  - hydra-core=1.1.1
+  - pandas=1.4.2
+  - cookiecutter=1.7.3
+  - wandb=0.12.14
 #  - matplotlib=3.3.4
 #  - git=2.30.2
 #  - pip=20.3.3

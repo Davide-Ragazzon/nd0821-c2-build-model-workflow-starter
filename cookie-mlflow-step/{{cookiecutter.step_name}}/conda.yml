@@ -4,4 +4,4 @@ channels:
 #  - defaults
 dependencies:
   - python=3.10
-  - wandb
+  - wandb=0.12.14

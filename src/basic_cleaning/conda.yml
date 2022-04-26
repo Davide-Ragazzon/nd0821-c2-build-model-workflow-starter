@@ -5,3 +5,4 @@ channels:
 dependencies:
   - python=3.10
   - wandb=0.12.14
+  - pandas

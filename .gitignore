@@ -1,3 +1,6 @@
+# Files and folder created by mlflow, Weights and biases, etc.
+mlruns/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

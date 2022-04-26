@@ -8,6 +8,7 @@ entry_points:
       input_artifact:
         description: "Input artifact with the raw data"
         type: string
+        default: "sample_data.csv:latest"
 
       output_artifact:
         description: "Output artifact with the cleaned data"
@@ -16,18 +17,22 @@ entry_points:
       output_type:
         description: "Output type"
         type: string
+        default: "csv"
 
       output_description:
-        description: "Output description"
+        description: "A brief description of the output artifact"
         type: string
+        default: "Data after cleaning"
 
       min_price:
         description: "Minumum price for outlier exclusion"
         type: float
+        default: 10
 
       max_price:
         description: "Maximum price for outlier exclusion"
         type: float
+        default: 350
 
 
     command: >-

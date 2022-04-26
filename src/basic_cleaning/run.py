@@ -6,9 +6,19 @@ import argparse
 import logging
 import wandb
 
+import pandas as pd
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
+
+
+def perform_simple_cleaning(df, min_price=10, max_price=350):
+    # Drop outliers
+    idx = df["price"].between(min_price, max_price)
+    df = df[idx].copy()
+    # Convert last_review to datetime
+    df["last_review"] = pd.to_datetime(df["last_review"])
+    return df
 
 
 def go(args):
@@ -18,11 +28,22 @@ def go(args):
 
     # Download input artifact. This will also log that this script is using this
     # particular version of the artifact
-    # artifact_local_path = run.use_artifact(args.input_artifact).file()
+    logger.info("Downloading artifact")
+    artifact = run.use_artifact(args.input_artifact)
+    artifact_local_path = artifact.file()
 
-    ######################
-    # YOUR CODE HERE     #
-    ######################
+    ori_df = pd.read_parquet(artifact_local_path)
+    clean_df = perform_simple_cleaning(ori_df, min_price=args.min_price, max_price=args.max_price)
+
+    output_file = "clean_sample.csv"
+    clean_df.to_csv(output_file, index=False)
+    artifact = wandb.Artifact(
+        name=args.output_artifact,
+        type=args.output_type,
+        description=args.output_description,
+    )
+    artifact.add_file(output_file)
+    run.log_artifact(artifact)
 
 
 if __name__ == "__main__":

@@ -8,4 +8,4 @@ dependencies:
   - pyyaml
   - hydra-core=1.1.1
   - wandb=0.12.14
-  - pyarrow=7.0.0
+#  - pyarrow=7.0.0

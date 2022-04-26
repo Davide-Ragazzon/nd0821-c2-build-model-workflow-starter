@@ -10,7 +10,7 @@ dependencies:
   - pandas=1.4.2
   - wandb=0.12.14
 #  - plotly
-#  - pandas-profiling
+  - pandas-profiling
 
 # Original dependencies
 #  - jupyterlab=3.0.12

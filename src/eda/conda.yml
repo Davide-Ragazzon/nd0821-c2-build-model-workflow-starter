@@ -1,13 +1,23 @@
 name: eda
 channels:
   - conda-forge
-  - defaults
+#  - defaults
 dependencies:
-  - jupyterlab=3.0.12
-  - seaborn=0.11.1
-  - pandas=1.2.3
-  - pip=20.3.3
-  - pandas-profiling=2.11.0
-  - pyarrow=2.0
-  - pip:
-      - wandb==0.10.31
+  - python=3.10
+  - jupyter=1.0.0
+  - mlflow=1.25.1
+  - hydra-core=1.1.1
+  - pandas=1.4.2
+  - wandb=0.12.14
+#  - plotly
+#  - pandas-profiling
+
+# Original dependencies
+#  - jupyterlab=3.0.12
+#  - seaborn=0.11.1
+#  - pandas=1.2.3
+#  - pip=20.3.3
+#  - pandas-profiling=2.11.0
+#  - pyarrow=2.0
+#  - pip:
+#      - wandb==0.10.31

@@ -1,12 +1,10 @@
 name: components
 channels:
   - conda-forge
-  - defaults
+#  - defaults
 dependencies:
-  - python=3.8
-  - mlflow=1.14.1
-  - pyyaml=5.3.1
-  - hydra-core=1.0.6
-  - pip=20.3.3
-  - pip:
-      - wandb==0.10.31
+  - python=3.10
+  - mlflow
+  - pyyaml
+  - hydra-core
+  - wandb

@@ -29,49 +29,25 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="A very basic data cleaning")
 
-
     parser.add_argument(
-        "--input_artifact", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
-        required=True
+        "--input_artifact", type=str, help="Input artifact with the raw data", required=True
     )
 
     parser.add_argument(
-        "--output_artifact", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
-        required=True
+        "--output_artifact", type=str, help="Output artifact with the cleaned data", required=True
+    )
+
+    parser.add_argument("--output_type", type=str, help="Output type", required=True)
+
+    parser.add_argument("--output_description", type=str, help="Output description", required=True)
+
+    parser.add_argument(
+        "--min_price", type=float, help="Minumum price for outlier exclusion", required=True
     )
 
     parser.add_argument(
-        "--output_type", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
-        required=True
+        "--max_price", type=float, help="Maximum price for outlier exclusion", required=True
     )
-
-    parser.add_argument(
-        "--output_description", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
-        required=True
-    )
-
-    parser.add_argument(
-        "--min_price", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
-        required=True
-    )
-
-    parser.add_argument(
-        "--max_price", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
-        required=True
-    )
-
 
     args = parser.parse_args()
 

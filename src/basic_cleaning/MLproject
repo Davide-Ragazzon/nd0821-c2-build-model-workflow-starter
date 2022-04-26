@@ -6,28 +6,28 @@ entry_points:
     parameters:
 
       input_artifact:
-        description: ## ADD DESCRIPTION
+        description: "Input artifact with the raw data"
         type: string
 
       output_artifact:
-        description: ## ADD DESCRIPTION
+        description: "Output artifact with the cleaned data"
         type: string
 
       output_type:
-        description: ## ADD DESCRIPTION
+        description: "Output type"
         type: string
 
       output_description:
-        description: ## ADD DESCRIPTION
+        description: "Output description"
         type: string
 
       min_price:
-        description: ## ADD DESCRIPTION
-        type: string
+        description: "Minumum price for outlier exclusion"
+        type: float
 
       max_price:
-        description: ## ADD DESCRIPTION
-        type: string
+        description: "Maximum price for outlier exclusion"
+        type: float
 
 
     command: >-

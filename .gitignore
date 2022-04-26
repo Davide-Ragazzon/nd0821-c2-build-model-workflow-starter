@@ -1,5 +1,11 @@
 # Files and folder created by mlflow, Weights and biases, etc.
 mlruns/
+artifacts/
+wandb/
+outputs/
+random_forest_dir/
+multirun/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -110,9 +116,3 @@ venv.bak/
 .idea/
 
 *.DS_Store
-artifacts/
-wandb/
-mlruns/
-outputs/
-random_forest_dir/
-multirun/

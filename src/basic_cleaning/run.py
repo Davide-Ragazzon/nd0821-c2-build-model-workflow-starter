@@ -6,6 +6,8 @@ import argparse
 import logging
 import wandb
 
+import os
+import tempfile
 import pandas as pd
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -35,15 +37,18 @@ def go(args):
     ori_df = pd.read_csv(artifact_local_path)
     clean_df = perform_simple_cleaning(ori_df, min_price=args.min_price, max_price=args.max_price)
 
-    output_file = "clean_sample.csv"
-    clean_df.to_csv(output_file, index=False)
-    artifact = wandb.Artifact(
-        name=args.output_artifact,
-        type=args.output_type,
-        description=args.output_description,
-    )
-    artifact.add_file(output_file)
-    run.log_artifact(artifact)
+    with tempfile.TemporaryDirectory() as temp_dir:
+        output_file = os.path.join(temp_dir, "clean_sample.csv")
+        clean_df.to_csv(output_file, index=False)
+        artifact = wandb.Artifact(
+            name=args.output_artifact,
+            type=args.output_type,
+            description=args.output_description,
+        )
+        artifact.add_file(output_file)
+        run.log_artifact(artifact)
+        # Make sure the artifact is uploaded before the temp_dir gets deleted
+        artifact.wait()
 
 
 if __name__ == "__main__":

@@ -53,6 +53,7 @@ def go(args):
     # Fix the random seed for the Random Forest, so we get reproducible results
     rf_config["random_state"] = args.random_seed
 
+    # Downloading the data using wandb
     artifact = run.use_artifact(args.trainval_artifact)
     trainval_local_path = artifact.file()
 
@@ -102,7 +103,6 @@ def go(args):
         sk_pipe,
         random_forest_dir,
         serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE,
-        # signature = ...infer signature?
         input_example=X_train.iloc[:2],
     )
 

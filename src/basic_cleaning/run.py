@@ -32,7 +32,7 @@ def go(args):
     artifact = run.use_artifact(args.input_artifact)
     artifact_local_path = artifact.file()
 
-    ori_df = pd.read_parquet(artifact_local_path)
+    ori_df = pd.read_csv(artifact_local_path)
     clean_df = perform_simple_cleaning(ori_df, min_price=args.min_price, max_price=args.max_price)
 
     output_file = "clean_sample.csv"

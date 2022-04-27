@@ -90,13 +90,22 @@ def go(args):
     logger.info("Exporting model")
 
     # Save model package in the MLFlow sklearn format
-    if os.path.exists("random_forest_dir"):
-        shutil.rmtree("random_forest_dir")
+    random_forest_dir = "random_forest_dir"
+    if os.path.exists(random_forest_dir):
+        shutil.rmtree(random_forest_dir)
 
     ######################################
     # Save the sk_pipe pipeline as a mlflow.sklearn model in the directory "random_forest_dir"
     # HINT: use mlflow.sklearn.save_model
-    # YOUR CODE HERE
+
+    mlflow.sklearn.save_model(
+        sk_pipe,
+        random_forest_dir,
+        serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE,
+        # signature = ...infer signature?
+        input_example=X_train.iloc[:2],
+    )
+
     ######################################
 
     ######################################
@@ -105,7 +114,14 @@ def go(args):
     # type, provide a description and add rf_config as metadata. Then, use the .add_dir method of the artifact instance
     # you just created to add the "random_forest_dir" directory to the artifact, and finally use
     # run.log_artifact to log the artifact to the run
-    # YOUR CODE HERE
+    artifact = wandb.Artifact(
+        args.output_artifact,
+        type="model_export",
+        description="Random Forest pipeline export",
+    )
+    artifact.add_dir(random_forest_dir)
+    run.log_artifact(artifact)
+    artifact.wait()
     ######################################
 
     # Plot feature importance
@@ -116,6 +132,7 @@ def go(args):
     run.summary["r2"] = r_squared
     # Now log the variable "mae" under the key "mae".
     # YOUR CODE HERE
+    run.summary["mae"] = mae
     ######################################
 
     # Upload to W&B the feture importance visualization
